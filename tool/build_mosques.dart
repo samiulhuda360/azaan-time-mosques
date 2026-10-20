@@ -36,7 +36,7 @@ Future<Map<String, dynamic>> _fetch() async {
       req.write('data=${Uri.encodeQueryComponent(_query)}');
       final res = await req.close().timeout(const Duration(minutes: 3));
       if (res.statusCode != 200) throw HttpException('HTTP ${res.statusCode}');
-      final body = await res.transform(utf8.decoder).join();
+      final body = await res.transform(utf8.decoder).join().timeout(const Duration(minutes: 3));
       client.close();
       stdout.writeln('Fetched from $server');
       return jsonDecode(body) as Map<String, dynamic>;
