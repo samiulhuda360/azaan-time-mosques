@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20T07:21:42.725976Z",
+ "generated": "2026-10-20T08:05:14.239404Z",
  "attribution": "© OpenStreetMap contributors (ODbL)",
  "mosques": [
   {
@@ -111,13 +111,6 @@
    "address": "20 Dalgety Drive, Wiri, Auckland"
   },
   {
-   "id": "way/474729168",
-   "name": "Birkenhead Islamic Centre",
-   "lat": -36.810423,
-   "lng": 174.741314,
-   "address": "79 Onewa Road, Northcote, Birkenhead"
-  },
-  {
    "id": "way/959907739",
    "name": "Ellerslie Islamic Centre",
    "lat": -36.897493,
@@ -158,8 +151,8 @@
   {
    "id": "node/5362650146",
    "name": "Hibiscus Coast Islamic Centre",
-   "lat": -36.622508,
-   "lng": 174.668575,
+   "lat": -36.622442,
+   "lng": 174.668509,
    "address": "8 Hibiscus Coast Highway, Silverdale, Auckland",
    "website": "https://www.hcic.org.nz"
   },
@@ -217,10 +210,10 @@
    "address": "5B Cortina Place, Pakuranga, Auckland"
   },
   {
-   "id": "way/381844694",
+   "id": "way/381844761",
    "name": "Masjid Al Huda",
-   "lat": -45.868982,
-   "lng": 170.515283,
+   "lat": -45.869153,
+   "lng": 170.515237,
    "address": "21 Clyde Street, North Dunedin, Dunedin"
   },
   {
@@ -268,7 +261,7 @@
    "name": "Masjid e Bilal - Wanganui Islamic Centre",
    "lat": -39.906478,
    "lng": 175.068456,
-   "address": "68 Talbot Street, Whanganui East, Whanganui"
+   "address": "68 Talbot Street, Wanganui East, Whanganui"
   },
   {
    "id": "way/308373663",
@@ -459,10 +452,12 @@
    "address": "6 Oxford Street, Tawa, Wellington"
   },
   {
-   "id": "node/3700497418",
-   "name": "University Masjid",
-   "lat": -36.854423,
-   "lng": 174.766878
+   "id": "way/1458827076",
+   "name": "Ulul Albab Islamic Institute NZ",
+   "lat": -36.902133,
+   "lng": 174.686687,
+   "address": "27 Stock Street",
+   "website": "https://ululalbabinstitute.co.nz/"
   },
   {
    "id": "way/837271009",
