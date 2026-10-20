@@ -5,7 +5,7 @@ on:
     - cron: "0 15 * * 0" # every Sunday 15:00 UTC = Monday morning in New Zealand
   push:
     branches: [main]
-    paths: ["data/timetables.json", "tool/build_mosques.dart"]
+    paths: ["data/timetables.json", "data/corrections.json", "tool/build_mosques.dart"]
   workflow_dispatch: # "Run workflow" button on GitHub
 
 permissions:

@@ -94,8 +94,9 @@ Each entry in `data/timetables.json` is keyed by the mosque's OpenStreetMap ID:
 | Field | Meaning |
 |---|---|
 | `source`, `updated` | Where the times came from and when they were checked. Shown in the app. |
-| `iqamah.<prayer>` | A list of seasons. Each has `from`/`to` dates (month-day, may run past New Year) and either `at` (fixed time, 24-hour) or `after` (minutes after the call to prayer). |
-| `jumuah` | Friday sessions: `khutbah` (optional) and `prayer` times. |
+| `iqamah.<prayer>` | A list of seasons. Each has `from`/`to` dates and either `at` (fixed time, 24-hour) or `after` (minutes after the call to prayer). Dates are `MM-DD` to repeat every year (a season may run past New Year) or `YYYY-MM-DD` for a timetable published for one year only. |
+| `daylightSaving` | Optional on any season or Friday session: `true` = only during daylight saving, `false` = only in standard time. Follows New Zealand's real clock change each year. |
+| `jumuah` | Friday sessions: `khutbah` (optional) and `prayer` times, with optional dates and `daylightSaving` like iqamah seasons. |
 | `method`, `hanafiAsr`, `azaanOffsets` | Optional. The mosque's own calculation settings, so the app's call-to-prayer times match the mosque. |
 
 ## Tech stack
@@ -137,6 +138,7 @@ No API keys or secrets are needed.
 ```
 assets/mosques.json          the published list the app downloads
 data/timetables.json         mosque prayer times, one entry per mosque
+data/corrections.json        fixes for wrong map details, e.g. a website that belongs to another mosque
 tool/build_mosques.dart      builds assets/mosques.json from OpenStreetMap + timetables
 tool/mosque_editor.html      browser editor for timetables
 .github/workflows/           weekly and on-change automatic rebuild
@@ -151,7 +153,9 @@ The Azaan Time app's test suite checks this data and the rules that use it:
 - a fixed iqamah time never comes before the call to prayer
 - Friday sessions are read correctly
 
-**Current data:** 67 mosques and prayer rooms across New Zealand; 1 mosque with its own published times. The list is refreshed from OpenStreetMap every week.
+**Current data:** 67 mosques and prayer rooms across New Zealand; 3 mosques with times they published themselves (Mount Albert Islamic Centre, Al-Mustafa Jamia Masjid, Palmerston North Islamic Centre). The list is refreshed from OpenStreetMap every week.
+
+Only times a mosque has published as a standing rule (or for a stated period) are added. Times that are out of date, or only valid for a single day, are left out so nobody is sent to the mosque at the wrong time.
 
 ## Licence
 

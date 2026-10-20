@@ -1,12 +1,29 @@
 {
-    "node/3700505525":  {
-                            "source":  "Mount Albert Islamic Centre website (Friday times, all year)",
-                            "updated":  "2026-10-20",
-                            "jumuah":  [
-                                           {
-                                               "khutbah":  "13:40",
-                                               "prayer":  "14:00"
-                                           }
-                                       ]
-                        }
+  "node/3700505525": {
+    "source": "Mount Albert Islamic Centre website (Friday times, all year)",
+    "updated": "2026-10-20",
+    "jumuah": [
+      { "khutbah": "13:40", "prayer": "14:00" }
+    ]
+  },
+  "way/360117094": {
+    "source": "Al-Mustafa Jamia Masjid website, sama.co.nz (Friday prayer, all year)",
+    "updated": "2026-10-20",
+    "jumuah": [
+      { "prayer": "12:40", "daylightSaving": false },
+      { "prayer": "13:40", "daylightSaving": true }
+    ]
+  },
+  "way/368408185": {
+    "source": "Manawatu Muslims Association 2026 timetable and live Masjidbox page (October 2026)",
+    "updated": "2026-10-20",
+    "iqamah": {
+      "dhuhr": [
+        { "from": "2026-10-01", "to": "2026-10-31", "at": "13:30" }
+      ],
+      "asr": [
+        { "from": "2026-10-01", "to": "2026-10-31", "at": "17:00" }
+      ]
+    }
+  }
 }

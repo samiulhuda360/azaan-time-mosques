@@ -73,14 +73,16 @@
 
     <h2 style="margin-top:20px">Iqamah times</h2>
     <p class="hint">Each prayer can have several seasons. Use either a fixed time, or minutes after the azaan.
-      Dates are month-day (MM-DD); a season can run past New Year, e.g. 10-01 to 03-31.</p>
+      Dates are month-day (MM-DD) to repeat every year, and can run past New Year (e.g. 10-01 to 03-31);
+      use a full date (2026-10-01) for a timetable published for one year only. "Daylight saving" follows
+      New Zealand's real clock change each year.</p>
     <table><tbody id="iqamah"></tbody></table>
 
     <h2 style="margin-top:20px">Azaan adjustments (minutes, optional)</h2>
     <div class="row" id="offsets"></div>
 
     <h2 style="margin-top:20px">Jumu'ah (Friday)</h2>
-    <table><thead><tr><th>Khutbah</th><th>Prayer</th><th></th></tr></thead><tbody id="jumuah"></tbody></table>
+    <table><thead><tr><th>Khutbah</th><th>Prayer</th><th>When</th><th></th></tr></thead><tbody id="jumuah"></tbody></table>
     <button class="small" id="addJumuah">+ Add Friday session</button>
 
     <div class="row" style="margin-top:20px">
@@ -140,6 +142,10 @@ function renderList() {
 }
 $('search').oninput = renderList;
 
+function seasonSelect() {
+  return '<select class="dst"><option value="">Any time of year</option><option value="true">Daylight saving only</option><option value="false">Standard time only</option></select>';
+}
+
 function ruleRow(prayer, r) {
   const tr = document.createElement('tr');
   tr.dataset.prayer = prayer;
@@ -147,11 +153,13 @@ function ruleRow(prayer, r) {
   tr.innerHTML =
     '<td class="prayer"></td>' +
     '<td><input class="mmdd from" value="' + ((r && r.from) || '01-01') + '"> to <input class="mmdd to" value="' + ((r && r.to) || '12-31') + '"></td>' +
+    '<td>' + seasonSelect() + '</td>' +
     '<td><select class="kind"><option value="at">Fixed time</option><option value="after">Minutes after azaan</option></select></td>' +
     '<td><input class="time at" type="time"><input class="num after" type="number" min="0" max="120"></td>' +
     '<td><button class="small add">+ season</button> <button class="small del">Remove</button></td>';
   tr.querySelector('.prayer').textContent = LABELS[prayer];
   tr.querySelector('.kind').value = kind;
+  tr.querySelector('.dst').value = r && r.daylightSaving != null ? String(r.daylightSaving) : '';
   tr.querySelector('.at').value = (r && r.at) || '';
   tr.querySelector('.after').value = r && r.after != null ? r.after : '';
   const sync = () => {
@@ -167,7 +175,8 @@ function ruleRow(prayer, r) {
 
 function jumuahRow(s) {
   const tr = document.createElement('tr');
-  tr.innerHTML = '<td><input type="time" class="time khutbah"></td><td><input type="time" class="time prayer"></td><td><button class="small del">Remove</button></td>';
+  tr.innerHTML = '<td><input type="time" class="time khutbah"></td><td><input type="time" class="time prayer"></td><td>' + seasonSelect() + '</td><td><button class="small del">Remove</button></td>';
+  tr.querySelector('.dst').value = s && s.daylightSaving != null ? String(s.daylightSaving) : '';
   tr.querySelector('.khutbah').value = (s && s.khutbah) || '';
   tr.querySelector('.prayer').value = (s && s.prayer) || '';
   tr.querySelector('.del').onclick = () => tr.remove();
@@ -204,7 +213,7 @@ function open(m) {
   $('editor').scrollIntoView({ behavior: 'smooth' });
 }
 
-const MMDD = /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+const MMDD = /^(\d{4}-)?(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
 $('save').onclick = () => {
   if (!current) return;
@@ -218,8 +227,10 @@ $('save').onclick = () => {
     const kind = tr.querySelector('.kind').value;
     const at = tr.querySelector('.at').value, after = tr.querySelector('.after').value;
     if (kind === 'at' ? !at : after === '') continue; // empty row
-    if (!MMDD.test(from) || !MMDD.test(to)) { $('saveStatus').innerHTML = '<span class="warn">Dates must look like 04-01 (month-day).</span>'; return; }
+    if (!MMDD.test(from) || !MMDD.test(to)) { $('saveStatus').innerHTML = '<span class="warn">Dates must look like 04-01 (month-day) or 2026-04-01.</span>'; return; }
     const rule = { from, to };
+    const dst = tr.querySelector('.dst').value;
+    if (dst) rule.daylightSaving = dst === 'true';
     if (kind === 'at') rule.at = at; else rule.after = Number(after);
     (iqamah[tr.dataset.prayer] = iqamah[tr.dataset.prayer] || []).push(rule);
   }
@@ -231,7 +242,10 @@ $('save').onclick = () => {
   for (const tr of $('jumuah').querySelectorAll('tr')) {
     const prayer = tr.querySelector('.prayer').value, khutbah = tr.querySelector('.khutbah').value;
     if (!prayer) continue;
-    jumuah.push(khutbah ? { khutbah, prayer } : { prayer });
+    const session = khutbah ? { khutbah, prayer } : { prayer };
+    const dst = tr.querySelector('.dst').value;
+    if (dst) session.daylightSaving = dst === 'true';
+    jumuah.push(session);
   }
   if (jumuah.length) t.jumuah = jumuah;
   timetables[current.id] = t;

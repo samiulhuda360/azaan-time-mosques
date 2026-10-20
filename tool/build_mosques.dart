@@ -65,6 +65,12 @@ Future<void> main(List<String> args) async {
       ? jsonDecode(File('data/timetables.json').readAsStringSync()) as Map<String, dynamic>
       : <String, dynamic>{};
 
+  // Fixes for wrong details on the map, e.g. a website that belongs to another
+  // mosque: {"way/123": {"website": null}} removes it, a string replaces it.
+  final corrections = File('data/corrections.json').existsSync()
+      ? jsonDecode(File('data/corrections.json').readAsStringSync()) as Map<String, dynamic>
+      : <String, dynamic>{};
+
   final mosques = <Map<String, dynamic>>[];
   for (final e in (osm['elements'] as List).cast<Map<String, dynamic>>()) {
     final tags = (e['tags'] as Map?) ?? {};
@@ -74,7 +80,7 @@ Future<void> main(List<String> args) async {
     final lng = (e['lon'] ?? e['center']?['lon']) as num?;
     if (lat == null || lng == null) continue;
     final id = '${e['type']}/${e['id']}';
-    mosques.add({
+    final mosque = <String, dynamic>{
       'id': id,
       'name': name.trim(),
       'lat': double.parse(lat.toStringAsFixed(6)),
@@ -83,7 +89,10 @@ Future<void> main(List<String> args) async {
       if ((tags['website'] ?? tags['contact:website']) != null)
         'website': tags['website'] ?? tags['contact:website'],
       if (timetables[id] != null) 'timetable': timetables[id],
-    });
+    };
+    final fix = corrections[id] as Map<String, dynamic>?;
+    fix?.forEach((key, value) => value == null ? mosque.remove(key) : mosque[key] = value);
+    mosques.add(mosque);
   }
   mosques.sort((a, b) => (a['name'] as String).compareTo(b['name'] as String));
 
