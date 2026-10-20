@@ -1,0 +1,39 @@
+name: Update mosque list
+
+on:
+  schedule:
+    - cron: "0 15 * * 0" # every Sunday 15:00 UTC = Monday morning in New Zealand
+  push:
+    branches: [main]
+    paths: ["data/timetables.json", "tool/build_mosques.dart"]
+  workflow_dispatch: # "Run workflow" button on GitHub
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-mosques
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Build the mosque list from OpenStreetMap and the timetables
+        run: dart run tool/build_mosques.dart
+
+      - name: Publish if anything changed
+        run: |
+          if git diff --quiet -- assets/mosques.json; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "samiulhuda360"
+          git config user.email "68301536+samiulhuda360@users.noreply.github.com"
+          git add assets/mosques.json
+          git commit -m "Update mosque list"
+          git push

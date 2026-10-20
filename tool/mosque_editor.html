@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosque Timetable Editor</title>
+<style>
+  :root { --bg:#f4f8f7; --card:#fff; --ink:#10201e; --muted:#5b6b69; --line:#d6e2e0; --brand:#0f766e; --brand-ink:#fff; --warn:#b45309; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0f1716; --card:#172321; --ink:#e3eeec; --muted:#9db0ad; --line:#2a3b38; --brand:#2dd4bf; --brand-ink:#062a26; --warn:#fbbf24; } }
+  :root[data-theme="dark"] { --bg:#0f1716; --card:#172321; --ink:#e3eeec; --muted:#9db0ad; --line:#2a3b38; --brand:#2dd4bf; --brand-ink:#062a26; --warn:#fbbf24; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 0 0 12px; }
+  p.lead { color: var(--muted); margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 4px; }
+  input, select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; }
+  input[type=search] { width: 100%; }
+  button { font: inherit; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+  button.primary { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); font-weight: 600; }
+  button.small { padding: 4px 10px; font-size: 13px; }
+  .list { max-height: 260px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; margin-top: 10px; }
+  .list div { padding: 8px 12px; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .list div:hover, .list div.sel { background: color-mix(in srgb, var(--brand) 14%, transparent); }
+  .list small { color: var(--muted); display: block; }
+  .tag { font-size: 11px; color: var(--brand); font-weight: 700; margin-left: 6px; }
+  table { width: 100%; border-collapse: collapse; }
+  td, th { text-align: left; padding: 6px 4px; vertical-align: middle; }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .prayer { font-weight: 700; width: 90px; }
+  .hint { color: var(--muted); font-size: 13px; }
+  .status { color: var(--brand); font-weight: 600; min-height: 1.4em; }
+  .warn { color: var(--warn); }
+  input.time { width: 96px; } input.mmdd { width: 78px; } input.num { width: 70px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Mosque timetable editor</h1>
+  <p class="lead">Enter a mosque's iqamah (congregation) times and Friday sessions for the Azaan Time app.
+    Then run <code>dart run tool/build_mosques.dart</code> to put them into the app.</p>
+
+  <div class="card">
+    <h2>1. Open the data files</h2>
+    <div class="row">
+      <div><label>Mosque list: <code>assets/mosques.json</code></label><input type="file" id="mosquesFile" accept=".json"></div>
+      <div><label>Timetables: <code>data/timetables.json</code> (optional)</label><input type="file" id="ttFile" accept=".json"></div>
+    </div>
+    <p class="status" id="loadStatus"></p>
+  </div>
+
+  <div class="card">
+    <h2>2. Pick a mosque</h2>
+    <input type="search" id="search" placeholder="Search by name or suburb">
+    <div class="list" id="list"></div>
+  </div>
+
+  <div class="card" id="editor" hidden>
+    <h2 id="mosqueTitle"></h2>
+    <div class="row">
+      <div style="flex:2;min-width:240px"><label>Where these times come from</label><input id="source" style="width:100%" placeholder="e.g. Mosque notice board, October 2026"></div>
+      <div><label>Checked on</label><input type="date" id="updated"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div><label>Calculation method (optional)</label>
+        <select id="method"><option value="">Not specified</option><option value="mwl">Muslim World League</option><option value="isna">North America (ISNA)</option><option value="egypt">Egyptian Authority</option><option value="karachi">Karachi</option><option value="ummalqura">Umm al-Qura</option><option value="singapore">Singapore</option></select></div>
+      <div><label>Asr (optional)</label>
+        <select id="asr"><option value="">Not specified</option><option value="false">Standard</option><option value="true">Hanafi</option></select></div>
+    </div>
+
+    <h2 style="margin-top:20px">Iqamah times</h2>
+    <p class="hint">Each prayer can have several seasons. Use either a fixed time, or minutes after the azaan.
+      Dates are month-day (MM-DD); a season can run past New Year, e.g. 10-01 to 03-31.</p>
+    <table><tbody id="iqamah"></tbody></table>
+
+    <h2 style="margin-top:20px">Azaan adjustments (minutes, optional)</h2>
+    <div class="row" id="offsets"></div>
+
+    <h2 style="margin-top:20px">Jumu'ah (Friday)</h2>
+    <table><thead><tr><th>Khutbah</th><th>Prayer</th><th></th></tr></thead><tbody id="jumuah"></tbody></table>
+    <button class="small" id="addJumuah">+ Add Friday session</button>
+
+    <div class="row" style="margin-top:20px">
+      <button class="primary" id="save">Save this mosque</button>
+      <button id="remove">Remove its times</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Download</h2>
+    <p class="hint">Save the file as <code>data/timetables.json</code> in the app folder, replacing the old one.</p>
+    <button class="primary" id="download">Download timetables.json</button>
+    <p class="status" id="saveStatus"></p>
+  </div>
+</main>
+
+<script>
+const PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+const LABELS = { fajr: 'Fajr', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' };
+let mosques = [];
+let timetables = {};
+let current = null;
+const $ = (id) => document.getElementById(id);
+
+function readJson(input, done) {
+  const f = input.files[0];
+  if (!f) return;
+  f.text().then((txt) => done(JSON.parse(txt))).catch((e) => { $('loadStatus').textContent = 'Could not read ' + f.name + ': ' + e.message; });
+}
+
+$('mosquesFile').onchange = (e) => readJson(e.target, (j) => {
+  mosques = j.mosques || [];
+  for (const m of mosques) if (m.timetable && !timetables[m.id]) timetables[m.id] = m.timetable;
+  $('loadStatus').textContent = mosques.length + ' mosques loaded.';
+  renderList();
+});
+$('ttFile').onchange = (e) => readJson(e.target, (j) => {
+  timetables = Object.assign(timetables, j);
+  $('loadStatus').textContent = Object.keys(timetables).length + ' timetables loaded.';
+  renderList();
+});
+
+function renderList() {
+  const q = $('search').value.trim().toLowerCase();
+  $('list').innerHTML = '';
+  for (const m of mosques) {
+    if (q && !(m.name.toLowerCase().includes(q) || (m.address || '').toLowerCase().includes(q))) continue;
+    const d = document.createElement('div');
+    if (current && current.id === m.id) d.className = 'sel';
+    d.innerHTML = '';
+    const name = document.createElement('span'); name.textContent = m.name; d.appendChild(name);
+    if (timetables[m.id]) { const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = 'HAS TIMES'; d.appendChild(tag); }
+    const small = document.createElement('small'); small.textContent = (m.address || '') + (m.website ? '  ·  ' + m.website : ''); d.appendChild(small);
+    d.onclick = () => open(m);
+    $('list').appendChild(d);
+  }
+}
+$('search').oninput = renderList;
+
+function ruleRow(prayer, r) {
+  const tr = document.createElement('tr');
+  tr.dataset.prayer = prayer;
+  const kind = r && r.after != null ? 'after' : 'at';
+  tr.innerHTML =
+    '<td class="prayer"></td>' +
+    '<td><input class="mmdd from" value="' + ((r && r.from) || '01-01') + '"> to <input class="mmdd to" value="' + ((r && r.to) || '12-31') + '"></td>' +
+    '<td><select class="kind"><option value="at">Fixed time</option><option value="after">Minutes after azaan</option></select></td>' +
+    '<td><input class="time at" type="time"><input class="num after" type="number" min="0" max="120"></td>' +
+    '<td><button class="small add">+ season</button> <button class="small del">Remove</button></td>';
+  tr.querySelector('.prayer').textContent = LABELS[prayer];
+  tr.querySelector('.kind').value = kind;
+  tr.querySelector('.at').value = (r && r.at) || '';
+  tr.querySelector('.after').value = r && r.after != null ? r.after : '';
+  const sync = () => {
+    const isAt = tr.querySelector('.kind').value === 'at';
+    tr.querySelector('.at').hidden = !isAt;
+    tr.querySelector('.after').hidden = isAt;
+  };
+  tr.querySelector('.kind').onchange = sync; sync();
+  tr.querySelector('.add').onclick = () => tr.after(ruleRow(prayer, null));
+  tr.querySelector('.del').onclick = () => tr.remove();
+  return tr;
+}
+
+function jumuahRow(s) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td><input type="time" class="time khutbah"></td><td><input type="time" class="time prayer"></td><td><button class="small del">Remove</button></td>';
+  tr.querySelector('.khutbah').value = (s && s.khutbah) || '';
+  tr.querySelector('.prayer').value = (s && s.prayer) || '';
+  tr.querySelector('.del').onclick = () => tr.remove();
+  return tr;
+}
+$('addJumuah').onclick = () => $('jumuah').appendChild(jumuahRow(null));
+
+function open(m) {
+  current = m;
+  const t = timetables[m.id] || {};
+  $('editor').hidden = false;
+  $('mosqueTitle').textContent = m.name;
+  $('source').value = t.source || '';
+  $('updated').value = t.updated || new Date().toISOString().slice(0, 10);
+  $('method').value = t.method || '';
+  $('asr').value = t.hanafiAsr == null ? '' : String(t.hanafiAsr);
+  $('iqamah').innerHTML = '';
+  for (const p of PRAYERS) {
+    const rules = (t.iqamah && t.iqamah[p]) || [null];
+    for (const r of rules) $('iqamah').appendChild(ruleRow(p, r));
+  }
+  $('offsets').innerHTML = '';
+  for (const p of PRAYERS) {
+    const wrap = document.createElement('div');
+    wrap.innerHTML = '<label></label><input type="number" class="num" min="-30" max="30">';
+    wrap.querySelector('label').textContent = LABELS[p];
+    wrap.querySelector('input').dataset.prayer = p;
+    wrap.querySelector('input').value = (t.azaanOffsets && t.azaanOffsets[p]) || '';
+    $('offsets').appendChild(wrap);
+  }
+  $('jumuah').innerHTML = '';
+  for (const s of t.jumuah || []) $('jumuah').appendChild(jumuahRow(s));
+  renderList();
+  $('editor').scrollIntoView({ behavior: 'smooth' });
+}
+
+const MMDD = /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+
+$('save').onclick = () => {
+  if (!current) return;
+  const t = { source: $('source').value.trim(), updated: $('updated').value };
+  if (!t.source) { $('saveStatus').innerHTML = '<span class="warn">Please say where the times come from.</span>'; return; }
+  if ($('method').value) t.method = $('method').value;
+  if ($('asr').value) t.hanafiAsr = $('asr').value === 'true';
+  const iqamah = {};
+  for (const tr of $('iqamah').querySelectorAll('tr')) {
+    const from = tr.querySelector('.from').value.trim(), to = tr.querySelector('.to').value.trim();
+    const kind = tr.querySelector('.kind').value;
+    const at = tr.querySelector('.at').value, after = tr.querySelector('.after').value;
+    if (kind === 'at' ? !at : after === '') continue; // empty row
+    if (!MMDD.test(from) || !MMDD.test(to)) { $('saveStatus').innerHTML = '<span class="warn">Dates must look like 04-01 (month-day).</span>'; return; }
+    const rule = { from, to };
+    if (kind === 'at') rule.at = at; else rule.after = Number(after);
+    (iqamah[tr.dataset.prayer] = iqamah[tr.dataset.prayer] || []).push(rule);
+  }
+  if (Object.keys(iqamah).length) t.iqamah = iqamah;
+  const offsets = {};
+  for (const inp of $('offsets').querySelectorAll('input')) if (inp.value !== '' && Number(inp.value) !== 0) offsets[inp.dataset.prayer] = Number(inp.value);
+  if (Object.keys(offsets).length) t.azaanOffsets = offsets;
+  const jumuah = [];
+  for (const tr of $('jumuah').querySelectorAll('tr')) {
+    const prayer = tr.querySelector('.prayer').value, khutbah = tr.querySelector('.khutbah').value;
+    if (!prayer) continue;
+    jumuah.push(khutbah ? { khutbah, prayer } : { prayer });
+  }
+  if (jumuah.length) t.jumuah = jumuah;
+  timetables[current.id] = t;
+  $('saveStatus').textContent = 'Saved ' + current.name + '. Download the file when you are done.';
+  renderList();
+};
+
+$('remove').onclick = () => {
+  if (!current) return;
+  delete timetables[current.id];
+  $('saveStatus').textContent = 'Removed the times for ' + current.name + '.';
+  open(current);
+};
+
+$('download').onclick = () => {
+  const blob = new Blob([JSON.stringify(timetables, null, 2) + '\n'], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'timetables.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+</script>
+</body>
+</html>

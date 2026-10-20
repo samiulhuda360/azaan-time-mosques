@@ -1,0 +1,511 @@
+{
+ "generated": "2026-10-20T07:21:42.725976Z",
+ "attribution": "© OpenStreetMap contributors (ODbL)",
+ "mosques": [
+  {
+   "id": "node/13667982402",
+   "name": "AUT Masjid - Muslim Prayer Hall",
+   "lat": -36.853834,
+   "lng": 174.765439,
+   "address": "49 Saint Paul Street"
+  },
+  {
+   "id": "node/5417500955",
+   "name": "Al Hijaz Masjid",
+   "lat": -36.900771,
+   "lng": 174.719949,
+   "address": "236 Richardson Road, Wesley, Auckland"
+  },
+  {
+   "id": "node/12527833992",
+   "name": "Al Iqra Islamic Centre - (Takanini Islamic Centre)",
+   "lat": -37.051175,
+   "lng": 174.933697,
+   "address": "12A Tironui Station Road West, Takanini, Auckland"
+  },
+  {
+   "id": "way/314041410",
+   "name": "Al Maktoum Mosque",
+   "lat": -36.982022,
+   "lng": 174.787203,
+   "address": "91 Westney Road, Māngere, Auckland"
+  },
+  {
+   "id": "node/12501069621",
+   "name": "Al Mustafa Charity Centre",
+   "lat": -36.903007,
+   "lng": 174.688612,
+   "address": "3 Drury Street"
+  },
+  {
+   "id": "way/102298567",
+   "name": "Al Noor Mosque",
+   "lat": -43.532945,
+   "lng": 172.611727,
+   "address": "101 Deans Avenue, Riccarton, Christchurch"
+  },
+  {
+   "id": "way/778740428",
+   "name": "Al Qadiri Islamic Centre Manawatu",
+   "lat": -40.329196,
+   "lng": 175.602781,
+   "address": "24 Jupiter Street, Milson, Palmerston North"
+  },
+  {
+   "id": "node/12501045626",
+   "name": "Al Rahman Masjid",
+   "lat": -36.898351,
+   "lng": 174.712992,
+   "address": "84 Hendon Avenue, Mount Albert, Auckland"
+  },
+  {
+   "id": "way/329811386",
+   "name": "Al Rahman Masjid - Al Manar Islamic Trust",
+   "lat": -36.912815,
+   "lng": 174.749593,
+   "address": "72 Carr Road, Mount Roskill, Auckland",
+   "website": "https://almanar.co.nz"
+  },
+  {
+   "id": "way/1085592994",
+   "name": "Al-Falaah Mosque - Masjid",
+   "lat": -36.961653,
+   "lng": 174.895614,
+   "address": "1/8 Laidlaw Way, East Tāmaki"
+  },
+  {
+   "id": "way/317610415",
+   "name": "Al-Masjid Al-Jamie",
+   "lat": -36.852596,
+   "lng": 174.743738,
+   "address": "17 Vermont Street, Ponsonby, Auckland"
+  },
+  {
+   "id": "way/360117094",
+   "name": "Al-Mustafa Jamia Masjid",
+   "lat": -36.952062,
+   "lng": 174.844461,
+   "address": "26 Mangere Road, Ōtāhuhu, Auckland",
+   "website": "https://sama.co.nz/"
+  },
+  {
+   "id": "way/408830992",
+   "name": "Ashburton Masjid",
+   "lat": -43.922198,
+   "lng": 171.716958,
+   "address": "139 Archibald Street"
+  },
+  {
+   "id": "way/295577814",
+   "name": "Avondale Islamic Centre",
+   "lat": -36.895277,
+   "lng": 174.701379,
+   "address": "122 - 126 Blockhouse Bay Road, Avondale",
+   "website": "https://nzma.kiwi.nz/masjids/avondale/"
+  },
+  {
+   "id": "way/330474740",
+   "name": "Baitul Muqeet Mosque",
+   "lat": -37.012629,
+   "lng": 174.874066,
+   "address": "20 Dalgety Drive, Wiri, Auckland"
+  },
+  {
+   "id": "way/474729168",
+   "name": "Birkenhead Islamic Centre",
+   "lat": -36.810423,
+   "lng": 174.741314,
+   "address": "79 Onewa Road, Northcote, Birkenhead"
+  },
+  {
+   "id": "way/959907739",
+   "name": "Ellerslie Islamic Centre",
+   "lat": -36.897493,
+   "lng": 174.823272,
+   "address": "5 Ballarat Street"
+  },
+  {
+   "id": "node/3683197689",
+   "name": "Glen Innes Islamic Centre",
+   "lat": -36.882281,
+   "lng": 174.864856,
+   "address": "127 Elstree Avenue, Point England, Auckland",
+   "website": "https://buildamosque.co.nz/"
+  },
+  {
+   "id": "way/376316502",
+   "name": "Haleema Kindergarten - Haleema Kindergarten Trust",
+   "lat": -41.184126,
+   "lng": 174.954036,
+   "address": "14-20 Hunter Street, Taita, Lower Hutt, Wellington",
+   "website": "https://www.haleema.org.nz/"
+  },
+  {
+   "id": "way/438225997",
+   "name": "Hastings Mosque",
+   "lat": -39.648094,
+   "lng": 176.850134,
+   "address": "718 Heretaunga Street East, East Hastings, Parkvale , Hastings",
+   "website": "https://www.hastingsmosque.org"
+  },
+  {
+   "id": "way/371298256",
+   "name": "Hawera Islamic Centre",
+   "lat": -39.578545,
+   "lng": 174.272776,
+   "address": "20 Turuturu Road, Hāwera, Hāwera"
+  },
+  {
+   "id": "node/5362650146",
+   "name": "Hibiscus Coast Islamic Centre",
+   "lat": -36.622508,
+   "lng": 174.668575,
+   "address": "8 Hibiscus Coast Highway, Silverdale, Auckland",
+   "website": "https://www.hcic.org.nz"
+  },
+  {
+   "id": "way/330338372",
+   "name": "Imam Reza Mosque",
+   "lat": -36.912777,
+   "lng": 174.687404,
+   "address": "7b Astley Avenue"
+  },
+  {
+   "id": "node/3702016441",
+   "name": "Islamic Ahlulbayt Foundation of New Zealand",
+   "lat": -36.91471,
+   "lng": 174.899035,
+   "address": "27 Ben Lomond Crescent, Pakuranga Heights, Auckland",
+   "website": "https://islam.org.nz"
+  },
+  {
+   "id": "way/222843028",
+   "name": "Jamia Masjid",
+   "lat": -37.775104,
+   "lng": 175.284357,
+   "address": "921 Heaphy Terrace, Claudelands, Hamilton",
+   "website": "https://hamiltonmosque.com/"
+  },
+  {
+   "id": "node/12508326803",
+   "name": "Linwood Islam Centre - Masjid Al-Shuhada'a",
+   "lat": -43.532643,
+   "lng": 172.672449,
+   "address": "223 Linwood Avenue",
+   "website": "https://linwoodislamiccentre.org.nz/"
+  },
+  {
+   "id": "way/376316428",
+   "name": "Lower Hutt Islamic Centre",
+   "lat": -41.184244,
+   "lng": 174.95389,
+   "address": "14 Hunter Street, Taitā, Lower Hutt"
+  },
+  {
+   "id": "node/11191907237",
+   "name": "Masjid - Khadijah Rototuna Islamic Centre",
+   "lat": -37.730981,
+   "lng": 175.263213,
+   "address": "240 Thomas Road",
+   "website": "https://ricc.org.nz/"
+  },
+  {
+   "id": "way/333783842",
+   "name": "Masjid Abu Bakr Al Saddiq",
+   "lat": -36.915305,
+   "lng": 174.872235,
+   "address": "5B Cortina Place, Pakuranga, Auckland"
+  },
+  {
+   "id": "way/381844694",
+   "name": "Masjid Al Huda",
+   "lat": -45.868982,
+   "lng": 170.515283,
+   "address": "21 Clyde Street, North Dunedin, Dunedin"
+  },
+  {
+   "id": "node/9562316061",
+   "name": "Masjid Al-Ameen",
+   "lat": -41.225904,
+   "lng": 174.827837,
+   "address": "64 Kenmore Street, Newlands, Wellington",
+   "website": "https://www.alameen.org.nz"
+  },
+  {
+   "id": "node/3701968582",
+   "name": "Masjid As-Salam",
+   "lat": -36.887991,
+   "lng": 174.660355,
+   "address": "3 Akatea Road, Glendene, Auckland",
+   "website": "http://www.salammasjid.co.nz"
+  },
+  {
+   "id": "node/3683039850",
+   "name": "Masjid At-Taqwa",
+   "lat": -36.989135,
+   "lng": 174.86621,
+   "address": "58 Grayson Avenue, Papatoetoe, Auckland",
+   "website": "https://masjidattaqwa.co.nz"
+  },
+  {
+   "id": "way/439643386",
+   "name": "Masjid Ayesha",
+   "lat": -37.013819,
+   "lng": 174.889319,
+   "address": "96 Maich Road, Manurewa, Auckland",
+   "website": "https://www.masjidayesha.co.nz/"
+  },
+  {
+   "id": "node/3702024763",
+   "name": "Masjid e Abu Hurairah (Kelston Islamic Centre NZMA)",
+   "lat": -36.904521,
+   "lng": 174.660996,
+   "address": "45 Cartwright Road, Kelston, Auckland",
+   "website": "http://nzma.kiwi.nz/masjids/kelston/"
+  },
+  {
+   "id": "way/370869018",
+   "name": "Masjid e Bilal - Wanganui Islamic Centre",
+   "lat": -39.906478,
+   "lng": 175.068456,
+   "address": "68 Talbot Street, Whanganui East, Whanganui"
+  },
+  {
+   "id": "way/308373663",
+   "name": "Masjid e Umar",
+   "lat": -36.901806,
+   "lng": 174.724419,
+   "address": "185 - 187 Stoddard Road, Mt. Roskill, Mt. Eden , Auckland",
+   "website": "https://www.masjideumar.co.nz/"
+  },
+  {
+   "id": "way/219766071",
+   "name": "Massey Islamic Centre",
+   "lat": -40.387535,
+   "lng": 175.617396
+  },
+  {
+   "id": "way/383387925",
+   "name": "Mataura Masjid",
+   "lat": -46.192527,
+   "lng": 168.866507,
+   "address": "127 Main Street, Mataura, Mataura"
+  },
+  {
+   "id": "way/330200951",
+   "name": "Maunatul Islamic Centre",
+   "lat": -36.971949,
+   "lng": 174.794426,
+   "address": "45 Thomas Road, Māngere, Auckland"
+  },
+  {
+   "id": "node/3700505525",
+   "name": "Mount Albert Islamic Centre",
+   "lat": -36.879401,
+   "lng": 174.724792,
+   "address": "38 Wairere Avenue, Mount Albert, Auckland",
+   "website": "https://mtalbertislamiccentre.org",
+   "timetable": {
+    "source": "Mount Albert Islamic Centre website (Friday times, all year)",
+    "updated": "2026-10-20",
+    "jumuah": [
+     {
+      "khutbah": "13:40",
+      "prayer": "14:00"
+     }
+    ]
+   }
+  },
+  {
+   "id": "node/10742555935",
+   "name": "Muslim Prayer Room",
+   "lat": -36.733546,
+   "lng": 174.702924
+  },
+  {
+   "id": "node/9989548739",
+   "name": "Muslims Students Association Prayer Rooms",
+   "lat": -41.288501,
+   "lng": 174.768321
+  },
+  {
+   "id": "node/3702073524",
+   "name": "Nawawi Centre",
+   "lat": -43.525047,
+   "lng": 172.642221,
+   "address": "201 Peterborough Street, Christchurch Central, Christchurch",
+   "website": "https://nawawicenter.org/"
+  },
+  {
+   "id": "node/12508327002",
+   "name": "Nelson Islamic Cultural Society (NICS)",
+   "lat": -41.274486,
+   "lng": 173.282117,
+   "address": "120 Hardy Street",
+   "website": "https://nelsonmosque.co.nz/"
+  },
+  {
+   "id": "node/3700492108",
+   "name": "New Lynn Islamic Centre",
+   "lat": -36.908124,
+   "lng": 174.688993,
+   "address": "13 Ward Street, New Lynn, Auckland",
+   "website": "https://newlynnislamiccentre.co.nz"
+  },
+  {
+   "id": "way/1072123016",
+   "name": "Newlands Mosque",
+   "lat": -41.220967,
+   "lng": 174.82292,
+   "address": "40 Bracken Road"
+  },
+  {
+   "id": "way/188563031",
+   "name": "Onehunga Islamic Centre",
+   "lat": -36.922348,
+   "lng": 174.789588,
+   "address": "140 Church Street, Onehunga, Auckland"
+  },
+  {
+   "id": "node/12527833991",
+   "name": "Otahuhu Mosque - Masjid",
+   "lat": -36.935851,
+   "lng": 174.840326,
+   "address": "34 Portage Road, Ōtāhuhu, Auckland",
+   "website": "https://masjidalfarooq.co.nz/"
+  },
+  {
+   "id": "way/368408185",
+   "name": "Palmerston North Islamic Centre",
+   "lat": -40.362147,
+   "lng": 175.604926,
+   "address": "81 Cook Street, Palmerston North, Palmerston North",
+   "website": "https://www.manawatumuslims.org.nz/"
+  },
+  {
+   "id": "way/425040599",
+   "name": "Papatoetoe Islamic Centre",
+   "lat": -36.978547,
+   "lng": 174.836716,
+   "address": "63 Park Avenue, Papatoetoe, Auckland"
+  },
+  {
+   "id": "way/991808960",
+   "name": "Porirua Mosque",
+   "lat": -41.137482,
+   "lng": 174.880524,
+   "address": "58 Waihora Crescent, Waitangirua, Porirua"
+  },
+  {
+   "id": "node/3700494179",
+   "name": "Pukekohe Islamic Centre",
+   "lat": -37.197627,
+   "lng": 174.892232,
+   "address": "107 Princes Street, Pukekohe, Pukekohe"
+  },
+  {
+   "id": "node/11967853485",
+   "name": "Queenstown Masjid",
+   "lat": -45.019886,
+   "lng": 168.663709
+  },
+  {
+   "id": "way/914921474",
+   "name": "Rasol-O-Allah Islamic Center",
+   "lat": -43.490623,
+   "lng": 172.5812
+  },
+  {
+   "id": "way/369951850",
+   "name": "Rotorua Islamic Association",
+   "lat": -38.150774,
+   "lng": 176.239946,
+   "address": "274 Old Taupo Road"
+  },
+  {
+   "id": "way/1347920415",
+   "name": "Southland Muslims Association Masjid",
+   "lat": -46.409809,
+   "lng": 168.389021,
+   "address": "31 Fairview Avenue, Hawthorndale, Invercargill",
+   "website": "http://www.sma.org.nz/"
+  },
+  {
+   "id": "way/1108456122",
+   "name": "Taihape Islamic Centre",
+   "lat": -39.678209,
+   "lng": 175.797958,
+   "address": "3 Tui Street"
+  },
+  {
+   "id": "way/1067027825",
+   "name": "Taupo Islamic Centre",
+   "lat": -38.687506,
+   "lng": 176.078004,
+   "address": "57 Kaimanawa Street"
+  },
+  {
+   "id": "way/375662574",
+   "name": "Tauranga Masjid",
+   "lat": -37.709563,
+   "lng": 176.152496,
+   "address": "85 Eighteenth Avenue, Tauranga"
+  },
+  {
+   "id": "way/1023440048",
+   "name": "Tawa Islamic Centre",
+   "lat": -41.173503,
+   "lng": 174.82551,
+   "address": "6 Oxford Street, Tawa, Wellington"
+  },
+  {
+   "id": "node/3700497418",
+   "name": "University Masjid",
+   "lat": -36.854423,
+   "lng": 174.766878
+  },
+  {
+   "id": "way/837271009",
+   "name": "University of Canterbury Musalla",
+   "lat": -43.522176,
+   "lng": 172.586275,
+   "address": "37 Creyke Road",
+   "website": "https://www.canterburymusa.com"
+  },
+  {
+   "id": "way/1023438859",
+   "name": "Upper Hutt Islamic Centre",
+   "lat": -41.128463,
+   "lng": 175.036136,
+   "address": "71 Merton Street, Trentham, Upper Hutt"
+  },
+  {
+   "id": "way/421566349",
+   "name": "Vajihi Markaz",
+   "lat": -36.882487,
+   "lng": 174.639664
+  },
+  {
+   "id": "way/813231842",
+   "name": "Wellington Islamic Centre",
+   "lat": -41.320525,
+   "lng": 174.794072,
+   "address": "7/11 Queens Drive, Kilbirnie, Wellington",
+   "website": "https://www.iman.co.nz/ic/nz.php"
+  },
+  {
+   "id": "way/340098308",
+   "name": "West Auckland Islamic Centre",
+   "lat": -36.862511,
+   "lng": 174.601707,
+   "address": "31-33 Armada Drive, Rānui, Auckland"
+  },
+  {
+   "id": "node/3703999430",
+   "name": "Whangarei Masjid (Northland Muslim Charitable Trust)",
+   "lat": -35.728903,
+   "lng": 174.316918,
+   "address": "11 Porowini Avenue, Whangarei"
+  }
+ ]
+}

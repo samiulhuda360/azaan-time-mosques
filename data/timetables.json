@@ -1,0 +1,12 @@
+{
+    "node/3700505525":  {
+                            "source":  "Mount Albert Islamic Centre website (Friday times, all year)",
+                            "updated":  "2026-10-20",
+                            "jumuah":  [
+                                           {
+                                               "khutbah":  "13:40",
+                                               "prayer":  "14:00"
+                                           }
+                                       ]
+                        }
+}
