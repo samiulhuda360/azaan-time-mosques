@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20T08:05:14.239404Z",
+ "generated": "2026-10-20T08:46:58.385612Z",
  "attribution": "© OpenStreetMap contributors (ODbL)",
  "mosques": [
   {
@@ -86,7 +86,21 @@
    "lat": -36.952062,
    "lng": 174.844461,
    "address": "26 Mangere Road, Ōtāhuhu, Auckland",
-   "website": "https://sama.co.nz/"
+   "website": "https://sama.co.nz/",
+   "timetable": {
+    "source": "Al-Mustafa Jamia Masjid website, sama.co.nz (Friday prayer, all year)",
+    "updated": "2026-10-20",
+    "jumuah": [
+     {
+      "prayer": "12:40",
+      "daylightSaving": false
+     },
+     {
+      "prayer": "13:40",
+      "daylightSaving": true
+     }
+    ]
+   }
   },
   {
    "id": "way/408830992",
@@ -109,6 +123,13 @@
    "lat": -37.012629,
    "lng": 174.874066,
    "address": "20 Dalgety Drive, Wiri, Auckland"
+  },
+  {
+   "id": "way/474729168",
+   "name": "Birkenhead Islamic Centre",
+   "lat": -36.810423,
+   "lng": 174.741314,
+   "address": "79 Onewa Road, Northcote, Birkenhead"
   },
   {
    "id": "way/959907739",
@@ -138,8 +159,7 @@
    "name": "Hastings Mosque",
    "lat": -39.648094,
    "lng": 176.850134,
-   "address": "718 Heretaunga Street East, East Hastings, Parkvale , Hastings",
-   "website": "https://www.hastingsmosque.org"
+   "address": "718 Heretaunga Street East, East Hastings, Parkvale , Hastings"
   },
   {
    "id": "way/371298256",
@@ -151,8 +171,8 @@
   {
    "id": "node/5362650146",
    "name": "Hibiscus Coast Islamic Centre",
-   "lat": -36.622442,
-   "lng": 174.668509,
+   "lat": -36.622508,
+   "lng": 174.668575,
    "address": "8 Hibiscus Coast Highway, Silverdale, Auckland",
    "website": "https://www.hcic.org.nz"
   },
@@ -177,7 +197,7 @@
    "lat": -37.775104,
    "lng": 175.284357,
    "address": "921 Heaphy Terrace, Claudelands, Hamilton",
-   "website": "https://hamiltonmosque.com/"
+   "website": "https://waikatomuslims.org.nz/prayer-times/"
   },
   {
    "id": "node/12508326803",
@@ -210,10 +230,10 @@
    "address": "5B Cortina Place, Pakuranga, Auckland"
   },
   {
-   "id": "way/381844761",
+   "id": "way/381844694",
    "name": "Masjid Al Huda",
-   "lat": -45.869153,
-   "lng": 170.515237,
+   "lat": -45.868982,
+   "lng": 170.515283,
    "address": "21 Clyde Street, North Dunedin, Dunedin"
   },
   {
@@ -261,7 +281,7 @@
    "name": "Masjid e Bilal - Wanganui Islamic Centre",
    "lat": -39.906478,
    "lng": 175.068456,
-   "address": "68 Talbot Street, Wanganui East, Whanganui"
+   "address": "68 Talbot Street, Whanganui East, Whanganui"
   },
   {
    "id": "way/308373663",
@@ -373,7 +393,27 @@
    "lat": -40.362147,
    "lng": 175.604926,
    "address": "81 Cook Street, Palmerston North, Palmerston North",
-   "website": "https://www.manawatumuslims.org.nz/"
+   "website": "https://www.manawatumuslims.org.nz/",
+   "timetable": {
+    "source": "Manawatu Muslims Association 2026 timetable and live Masjidbox page (October 2026)",
+    "updated": "2026-10-20",
+    "iqamah": {
+     "dhuhr": [
+      {
+       "from": "2026-10-01",
+       "to": "2026-10-31",
+       "at": "13:30"
+      }
+     ],
+     "asr": [
+      {
+       "from": "2026-10-01",
+       "to": "2026-10-31",
+       "at": "17:00"
+      }
+     ]
+    }
+   }
   },
   {
    "id": "way/425040599",
@@ -452,12 +492,10 @@
    "address": "6 Oxford Street, Tawa, Wellington"
   },
   {
-   "id": "way/1458827076",
-   "name": "Ulul Albab Islamic Institute NZ",
-   "lat": -36.902133,
-   "lng": 174.686687,
-   "address": "27 Stock Street",
-   "website": "https://ululalbabinstitute.co.nz/"
+   "id": "node/3700497418",
+   "name": "University Masjid",
+   "lat": -36.854423,
+   "lng": 174.766878
   },
   {
    "id": "way/837271009",
