@@ -151,7 +151,7 @@ The Azaan Time app's test suite checks this data and the rules that use it:
 - a fixed iqamah time never comes before the call to prayer
 - Friday sessions are read correctly
 
-**Current data:** 68 mosques and prayer rooms across New Zealand (61 with an address, 26 with a website); 1 mosque with its own published times.
+**Current data:** 67 mosques and prayer rooms across New Zealand; 1 mosque with its own published times. The list is refreshed from OpenStreetMap every week.
 
 ## Licence
 
